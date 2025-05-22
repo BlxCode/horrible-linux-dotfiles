@@ -1,0 +1,121 @@
+{
+    "layer": "top",
+    "spacing": 0,
+    "height": 0,
+
+    "margin-top": 8,
+    "margin-right": 8,
+    "margin-bottom": 0,
+    "margin-left": 8,
+
+    "modules-left": [
+        "sway/workspaces"
+    ],
+
+  
+    "modules-right": [
+"cpu","memory",
+
+"disk",
+        "tray",
+"custom/color",    
+"pulseaudio",
+        "network",
+ 
+	"power-profiles-daemon",      
+        "battery",
+	"clock",
+"custom/power",
+    ],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "tooltip": false
+    },
+"custom/color":{
+"format":"🎨 Color Picker",
+"on-click":"hyprpicker -a",
+
+},
+"custom/power" : {
+"on-click":"hyprlock",
+"on-click-right":"loginctl kill-user blxm",
+"on-click-middle":"shutdown -h now",
+"format": "⏻  Power",
+"tooltip-format":"Click: Suspend, Right Click: Log Out, Middle Click: Shutdown",
+},
+  "tray": {
+        "spacing": 10,
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "{:%I:%M:%S %p %a, %d %b}",
+        "tooltip": false,
+	"interval":1,
+    },
+
+    "cpu": {
+        "format": "🖥️ {usage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 90
+        }
+    },
+
+    "memory": {
+        "format": "💿 {percentage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 80
+        }
+    },
+"disk":{
+"format":"💾 {free}",
+"interval":60,
+},
+    "battery": {
+        "format": "🔋 {capacity}%",
+        "interval": 5,
+        "states": {
+"full":100,
+	  "ok":99,
+            "warning": 30,
+            "critical": 15,
+        },
+        "tooltip": true,
+"format-icons":{"warning":"🪫","ok":"🔋","full":"🔌"},
+    },
+
+    "network": {
+        "format-wifi" : "🛜 {essid} {signalStrength}%",
+        "format-ethernet": "ETH {bandwidthDownBits}",
+        "format-disconnected" : "no network",
+        "interval": 5,
+	"on-click": "nm-connection-editor",
+        "tooltip": false
+    },
+    "power-profiles-daemon":{
+"format": "{icon}",
+
+ "format-icons": {
+    "default": "⚡",
+    "performance": "⚡",
+    "balanced": "⚖️",
+    "power-saver": "🍃"
+  }
+	},
+    "pulseaudio": {
+        "scroll-step": 5,
+        "max-volume": 150,
+        "format": "🔊 {volume}%",
+	"format-muted": "🔇 {volume}%",
+        "format-bluetooth": "vol {volume}%",
+        "nospacing": 1,
+        "on-click": "pavucontrol",
+        "tooltip": true
+    }
+}
